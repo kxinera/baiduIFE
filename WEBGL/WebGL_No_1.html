@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebGL No.1</title>
+  
+	<script type="text/javascript" src="three.js">
+  
+	</script>
+
+	<script type="text/javascript">
+            function init() {
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x999999);
+                renderer.shadowMapEnabled = true;
+                renderer.shadowMapSoft = true;
+                var scene = new THREE.Scene();
+                
+                // camera
+                // canvas size is 400x300
+                 camera = new THREE.PerspectiveCamera(30,4/3,1,10);
+                camera.position.set(-3, 3, 3);
+                camera.lookAt(new THREE.Vector3(0,0,0));
+                scene.add(camera);
+
+                //light
+                var light = new THREE.PointLight(0xffffff,1.5,100);
+                light.position.set(-3,5,4);
+                scene.add(light);
+                
+                // a cube in the scene
+                
+                //圆环面
+                var torus1 = new THREE.Mesh(new THREE.TorusGeometry(0.15,0.09,12,18) ,new THREE.MeshLambertMaterial({
+                	color:0xffffff
+                }));
+                torus1.position.set(-0.7,-0.2,0.8);
+                torus1.rotation.set(0,1.5,0);
+
+                scene.add(torus1);
+
+                var torus2 = new THREE.Mesh(new THREE.TorusGeometry(0.15,0.09,12,18) ,new THREE.MeshLambertMaterial({
+                	color:0xffffff
+                }));
+                torus2.position.set(-0.7,-0.2,-0.1);
+                torus2.rotation.set(0,1.5,0);
+
+                scene.add(torus2);
+
+                var torus3 = new THREE.Mesh(new THREE.TorusGeometry(0.15,0.09,12,18) ,new THREE.MeshLambertMaterial({
+                	color:0xffffff
+                }));
+                torus3.position.set(0.1,-0.2,0.6);
+                torus3.rotation.set(0,1.5,0);
+
+                scene.add(torus3);
+
+                var torus4 = new THREE.Mesh(new THREE.TorusGeometry(0.15,0.09,12,18) ,new THREE.MeshLambertMaterial({
+                	color:0xffffff
+                }));
+                torus4.position.set(0.1,-0.2,-0.1);
+                torus4.rotation.set(0,1.5,0);
+
+                scene.add(torus4);
+                
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(0.8, 1.2, 1.8),
+                        new THREE.MeshLambertMaterial({
+                            color:0xffffff
+                            
+                                                     
+                        })
+                );
+                cube.receiveShadow =true;
+               
+                scene.add(cube);
+           
+                
+                // render
+                renderer.render(scene, camera);
+            }
+        </script>
+
+
+</head>
+<body onload="init()">
+
+<canvas id="mainCanvas" width="400px" height="300px"></canvas>
+
+
+
+</body>
+</html>
