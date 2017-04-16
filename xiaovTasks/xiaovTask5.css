@@ -1,0 +1,75 @@
+/*navigator 置顶，位置，背景颜色 向右对齐*/
+.body{
+	background-color: #cccccc;
+}
+.navigator {
+	background-color:black;
+	
+	position: relative;
+	top:0;
+	left:0;
+	width: 100%;
+	height:50px;
+
+}
+.navUl li{
+	position: relative;
+	
+	left:60%;
+
+	float: left;
+	margin-right: 6px;
+	margin-left: 6px;
+	
+}
+
+.li1,.li2,.li3,.li4 {
+
+	color: white;
+	text-decoration: none;
+	font-size:10px;
+	margin-right: 6px;
+	margin-left: 6px;
+	
+}
+
+.article1,.article2,.article3,.photos,.forms{
+	background-color: white;
+	width:90%;
+     padding: 20px;
+     margin:20px;
+     border:2px ridge #999999;
+     
+
+     
+}
+
+/*.article1{
+	position: relative;
+     top: 50px;
+}*/
+
+.arti2Ul{
+	list-style: none;
+}
+
+.phoDiv1,.phoDiv2,.phoDiv3,.phoDiv4 {
+	border:1px solid silver;
+	padding: 10px;
+	box-sizing:border-box;
+	width:30%;
+	margin-bottom: 10px;
+	
+}
+
+
+.forms{
+	float: right;
+	width: 250px;
+	
+}
+
+.leftContents{
+	width: auto;
+	margin-right: 340px;
+}
