@@ -1,0 +1,42 @@
+.outSideBox {
+	padding: 2px;
+	background-color: #eee;
+	border:1px solid #999;
+	float:left;
+}
+
+.leftSideBox{
+	
+	width: 200px;
+	padding: 20px;
+	border:1px solid #999;
+	background-color: white;
+	float: left;
+
+}
+
+.rightSideBox{
+	
+	width: 120px;
+	padding: 20px;
+	border:1px solid #999;
+	background-color: white;
+	float: right;
+	
+	
+
+}
+.pLogo1,.pLogo2,.pLogo3,.pLogo4 {
+	width: 80px;
+	height: 80px;
+	text-align: center;
+}
+.centerBox{
+	background-color: white;
+	border:1px solid #999;
+	padding: 20px;
+	margin-left: 250px;
+	margin-right: 180px;
+   
+
+}
