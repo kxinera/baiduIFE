@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>yaoyaoTask3</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<form>
+    <input type="radio" name="stu" id="student">在校生
+    <input type="radio" name="stu" id="notStudent">非在校生
+    <br>
+    <br>
+    <div id="stu" style="display: none;">
+        <label>学校</label>
+        <select id="city">
+            <option id="bj">北京</option>
+            <option id="dq">大庆</option>
+            <option id="hz">杭州</option>
+            <option id="harbin">哈尔滨</option>
+        </select>
+
+        <select id="uni"></select>
+    </div>
+    <br>
+    <br>
+    <div id="nonstu" style="display: none;">
+        <label>就业单位:</label> 
+        <input type="text" name="firm" maxlength="40">
+    </div>
+</form>
+
+<script type="text/javascript">
+    var student = document.getElementById("student");
+    var nonstudent = document.getElementById("notStudent");
+    var stu = document.getElementById("stu");
+    var nonstu = document.getElementById("nonstu");
+    student.addEventListener("click",function(){
+        
+        stu.setAttribute('style','display:block');
+        nonstu.setAttribute('style','display:none');
+    },false);
+    nonstudent.addEventListener("click",function(){
+        stu.setAttribute('style','display:none');
+        nonstu.setAttribute('style','display:block');
+    },false);
+     
+
+    function addOption(txt){
+        var opt= document.createElement("option");
+        opt.text = txt;
+        uni.options.add(opt);
+    }
+
+   var city = document.getElementById("city");
+   city.addEventListener("change",function(){
+    var uni =document.getElementById("uni");
+     var uniLen=uni.options.length;
+     if(uniLen>0){
+        for(var i=0;i<uniLen;i++){uni.options.remove(0);}
+     }
+
+    
+    city_value= city.value;
+    if(city_value=="北京"){
+        addOption("北京邮电大学");
+        addOption("北京师范大学");
+    }
+    if(city_value=="大庆"){
+        addOption("东北石油大学");
+        addOption("八一农垦大学");
+    }
+    if(city_value=="杭州"){
+        addOption("浙江大学");
+    }
+    if(city_value=="哈尔滨"){
+        addOption("哈尔滨工业大学");
+        addOption("哈尔滨师范大学");
+    }
+},false);
+</script>
+</body>
+</html>

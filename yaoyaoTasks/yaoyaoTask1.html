@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>yaoyaoTask1</title>
+	<script type="text/javascript">
+
+	
+        
+        /* function strlen (a){
+         	var len = 0;
+
+         	for (var i=0;i<a.length,i++){
+         		var c= a.charCodeAt(i);
+         		if(c>=0x00&&c<=0xff){
+         			len++;
+         		}
+         		else{
+         			len+=2;
+         		}
+         	}
+         	return len;
+
+         };*/
+
+         
+       
+      // var usernameLen =strlen(username);
+
+      function validate (form){
+
+      	var returnValue = true;
+	    var username = form.box1.value;
+        var len = 0;
+
+        for (var i= 0;i<username.length;i++){
+        	var c= username.charCodeAt(i);
+        	if(c>=0x00 && c<=0xff){
+        		len++;
+        	}else{
+        		len+=2;
+        	}
+        }
+
+	    if (len<4||len>16){
+			returnValue = false;
+			alert("your username must be at least 4 and no more than 16 characters long.")
+			document.getElementById("submit").nextSibling.innerHTML= "必填，长度为4-16个字符";
+			frmName.box1.focus();
+		}else{
+			returnValue = true;
+		}
+		return returnValue;
+	}
+		
+	</script>
+	
+
+</head>
+<body>
+
+<form name="frmName" method="post" action="register.aspx" onsubmit="return validate(this);">
+
+<label>名称</label>
+<input type="text" name="box1" id="box1" size="16">
+<input type="submit" value="验证" id="submit"><span class="message"></span>
+</form>
+
+</body>
+</html>
