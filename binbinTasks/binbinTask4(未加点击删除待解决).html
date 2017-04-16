@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>div</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    #container div {
+      background-color: red;
+      color:white;
+      height: 30px;
+      width: 30px;
+      margin: 5px;
+      float: left;
+      text-align: center;
+      font-size: 24px;
+    }
+  </style>
+<script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+
+<input type="text" name="inputNumber" id="inputNumber">
+<input type="button" name="leftIn" id="leftIn" value="左侧入">
+<input type="button" name="rightIn" id="rightIn" value="右侧入">
+
+<input type="button" name="leftOut" id="leftOut" value="左侧出">
+<input type="button" name="rightOut" id="rightOut" value="右侧出">
+
+<div id="container">
+</div>
+<script type="text/javascript">
+
+  EventUtil.addHandler(window,"load", function(event){
+    var str=[];
+      var inputNumber = document.getElementById("inputNumber");
+      
+      var leftIn = document.getElementById("leftIn");
+      var rightIn = document.getElementById("rightIn");
+      var leftOut = document.getElementById("leftOut");
+      var rightOut = document.getElementById("rightOut");
+      var container = document.getElementById("container");
+     
+
+      EventUtil.addHandler(leftIn,"click", function(event){
+         //event = EventUtil.getEvent(event);
+               var number = inputNumber.value; 
+               if(!/^\d{2}$/.test(number)){
+                alert("please input a number");
+               } else{
+                str.unshift(number);
+          container.insertAdjacentHTML("afterbegin","<div id=\"divs\">" + number + "</div>");
+          inputNumber.value="";
+          }         
+      });
+
+      EventUtil.addHandler(rightIn,"click",function(event){
+        var number = inputNumber.value;
+         if(!/^\d{2}$/.test(number)){
+                alert("please input a number");
+               } else{
+                str.push(number);
+           container.insertAdjacentHTML("beforeend","<div id=\"divs\">" + number + "</div>");
+          inputNumber.value="";   
+        }
+      });
+      
+      EventUtil.addHandler(leftOut,"click",function(event){
+           container.removeChild(container.firstChild);
+           str.shift();
+      });
+
+      EventUtil.addHandler(rightOut,"click",function(event){
+          container.removeChild(container.lastChild);
+          str.pop();
+      }); 
+
+      function deleteDiv (){
+        for(var i=0;i<container.childNodes.length;i++){
+          addEvent(container.childNodes[i],"click",function(i){
+            return function(){return str.splice(i,1);};
+          }(i));
+        }
+      }
+         
+  });
+
+
+
+</script>
+</body>
+</html>

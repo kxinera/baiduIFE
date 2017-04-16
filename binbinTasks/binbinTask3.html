@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+  </ul>
+
+  <ul id="resort">
+    <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+  </ul>
+
+  <button id="sort-btn">排序</button>
+
+<script type="text/javascript">
+
+
+ var ul = document.getElementById("source");
+ var lis = ul.getElementsByTagName("li");
+
+function getData(list){
+
+var data = new Array();
+ for(var i=0;i<list.length;i++){
+
+       var a = list[i].innerHTML;
+       var b = a.substring(0,2);
+       var c= a.substring(a.length-6,a.length-4);
+         data.push(b+c);
+
+
+ }
+ return data;
+}
+
+
+
+
+	function sortAqiData(data){
+
+ for (var j=1; j<data.length;j++){
+  
+  	var num1 = data[j].substring(data[j].length-2,data[j].length);
+  	number1= parseInt(num1);
+
+	for(var k=0;k<j;k++) {
+		var num2= data[k].substring(data[k].length-2,data[k].length);
+		number2 = parseInt(num2);
+
+		if(number2<number1){
+			var chx = 0;
+			chx = data[j];
+			data[j] = data[k];
+			data[k] = chx;
+
+
+		}else{ data[j] = data[j];
+		data[k]= data[k]; }
+	}
+
+}
+return data;
+}
+
+
+
+
+function render(data){
+	var resort = document.getElementById("resort");
+	for (var k=0;k<data.length;k++){
+		var city = data[k].substring(0,2);
+		var quality = data[k].substring(2,4);
+      document.write("<li>"+city+"空气质量：<b>"+quality+"<\/b><\/li>");
+	}
+}
+
+function btnHandle(){
+	var aqiData = getData(lis);
+	aqiData = sortAqiData(aqiData);
+	render(aqiData);
+}
+
+
+var btn = document.getElementById("sort-btn");
+
+
+function init(){
+   
+    btn.addEventListener("click",function(){btnHandle(lis);},false);
+}
+
+init();
+  
+
+
+
+
+</script>
+</body>
+</html>

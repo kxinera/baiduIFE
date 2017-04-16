@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        .node_1,.node_2,.node_3,.node_4,.node_5{
+            border:1px solid black;
+            padding: 5px;
+            margin: 5px;
+            float: left;
+            box-sizing: content-box;
+            
+        }
+        .node_1{
+            width: 800px;
+            height: 600px;
+        }
+        .node_2{
+            width: 700px;
+            height: 250px;
+        }
+        .node_3{
+            width: 320px;
+            height: 200px;
+        }
+        .node_4{
+            width: 120px;
+            height: 150px;
+        }
+        .node_5{
+            width: 40px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="node_1">1
+    <div class="node_2"> 2
+      <div class="node_3">3
+        <div class="node_4">4
+          <div class="node_5">5</div>
+          <div class="node_5">5</div>   
+        </div>
+         <div class="node_4">4
+           <div class="node_5">5</div>
+          <div class="node_5">5</div> 
+         </div>
+          
+      </div>
+      <div class="node_3">3
+          <div class="node_4">4
+          <div class="node_5">5</div>
+          <div class="node_5">5</div>
+        </div>
+         <div class="node_4">4
+            <div class="node_5">5</div>
+            <div class="node_5">5</div>
+         </div>
+      </div>
+    </div>
+    <div class="node_2">2
+       <div class="node_3">3
+          <div class="node_4">4
+            <div class="node_5">5</div>
+            <div class="node_5">5</div>
+        </div>
+         <div class="node_4">4
+            <div class="node_5">5</div>
+            <div class="node_5">5</div>
+         </div>
+         
+     </div>
+     <div class="node_3">3
+         <div class="node_4">4
+          <div class="node_5">5</div>
+          <div class="node_5">5</div>  
+        </div>
+         <div class="node_4">4
+            <div class="node_5">5</div>
+            <div class="node_5">5</div>
+         </div>
+     </div>
+     </div>
+</div>
+<input type="button" value="前序">
+<input type="button" value="中序">
+<input type="button" value="后序">
+<script type="text/javascript">
+
+    var btn=document.getElementsByTagName("input"),
+      preBtn=btn[0],
+      inBtn=btn[1],
+      lastBtn=btn[2],
+      treeNodes=[],
+      treeRoot=document.getElementsByClassName("node_1")[0],
+      timer=null;
+  window.onload=function(){
+    preBtn.onclick=function(){
+        reset();
+        preOrder(treeRoot);
+        changeColor();
+    }
+
+    inBtn.onclick=function(){
+        reset();
+        inOrder(treeRoot);
+        changeColor();
+    }
+
+    lastBtn.onclick=function(){
+        reset();
+        lastOrder(treeRoot);
+        changeColor();
+    }
+  }
+
+  function preOrder(node){
+    if(!(node==null)){
+        treeNodes.push(node);
+        preOrder(node.firstElementChild);
+        preOrder(node.lastElementChild);
+    }
+  }
+
+  function inOrder(node){
+    if(!(node==null)){
+        inOrder(node.firstElementChild);
+        treeNodes.push(node);
+        inOrder(node.lastElementChild);
+    }
+  }
+
+  function lastOrder(node){
+    if(!(node==null)){
+        lastOrder(node.firstElementChild);
+        lastOrder(node.lastElementChild);
+        treeNodes.push(node);
+      }
+  }
+
+  function changeColor(){
+     var i=0;
+     treeNodes[i].style.backgroundColor="blue";
+     timer=setInterval(function(argument){
+        i++;
+        if(i<treeNodes.length){
+            treeNodes[i-1].style.backgroundColor="white";
+            treeNodes[i].style.backgroundColor="blue";
+        }else{
+            clearInterval(timer);
+            treeNodes[i].style.backgroundColor="white";
+
+        }
+
+     },500)
+  }
+
+  function reset(){
+    treeNodes=[];
+      clearInterval(timer);
+      var divs= document.getElementsByTagName("div");
+      for(var i=0;i<divs.length;i++){
+        divs[i].style.backgroundColor="white";
+      }
+  }
+
+</script>
+</body>
+</html>
