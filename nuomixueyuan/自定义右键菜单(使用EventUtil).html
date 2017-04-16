@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oncontextmenu</title>
+    <style type="text/css">
+        .contextmenu1{border:1px #000000 solid;
+            width:300px; height: 40px;}
+    </style>
+    <script type="text/javascript" src = "EventUtil.js"></script>
+    <script type="text/javascript">
+        EventUtil.addHandler(window,"load",function(event){
+            var div = document.getElementById("contextmenu1");
+
+            EventUtil.addHandler(div,"contextmenu",function(event){
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+
+                var menu = document.getElementById("myMenu");
+                menu.style.left = event.clientX+"px";
+                menu.style.top = event.clientY+"px";
+                menu.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document,"click",function(event){
+                document.getElementById("myMenu").style.visibility = "hidden";
+            });
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="contextmenu1" id="contextmenu1">
+
+   right click to see the menu
+   </div>
+   <ul id="myMenu" style="position: absolute;visibility: hidden;background-color: silver;">
+       <li>Menu Item 1</li>
+       <li>Menu Item 2</li>
+   </ul>
+
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>

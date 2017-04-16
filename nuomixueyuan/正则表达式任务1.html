@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>regexp</title>
+  <script type="text/javascript">
+
+  function validate(form){
+    var returnValue = true;
+
+  var phoneNumber = form.phoneNum.value;
+  if(phoneNumber.length!=11){
+    returnValue = false;
+    alert("false");
+    frmPhNum.phoneNum.focus();
+  }else if(!/^1[3578]\d{9}$/i.test(phoneNumber)){
+    returnValue = false;
+    alert("false");
+    frmPhNum.phoneNum.focus();
+
+  }else {
+    returnValue = true;    
+    alert("true");
+}
+return returnValue;
+}
+    
+  </script>
+</head>
+<body>
+
+
+<form name="frmPhNum" method="post" action="register.aspx" onsubmit="return validate(this);">
+<input type="text" name="phoneNum" maxlength="40" id="phoneNum" size="12">
+<input type="submit">
+
+</form>
+
+</body>
+</html>
