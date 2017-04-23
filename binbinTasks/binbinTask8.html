@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>多叉树的动画遍历</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    #node1 {
+       height: 200px;
+       width: 1200px;
+
+    }
+    #node2{
+       height: 150px;
+       width: 350px;
+    }
+    #node3{
+      height: 100px;
+      width: 70px;
+    }
+    #node1,#node2,#node3{
+      margin:5px;
+      padding: 5px;
+      border:2px solid silver;
+      float:left;
+    }
+  </style>
+</head>
+<body>
+<div id="node1" value="World">World
+
+  <div id="node2" value="Asia">Asia
+     <div id="node3" value="China">China</div>
+     <div id="node3" value="Japan">Japan</div>
+     <div id="node3" value="Korea">Korea</div>
+  </div>
+
+  <div id="node2" value="Europe">Europe
+    <div id="node3" value="British">British</div>
+    <div id="node3" value="Greece">Greece</div>
+  </div>
+  <div id="node2" value="America">America</div>
+</div><br>
+<input type="button" id="traverse" value="遍历"><br>
+<input type="text" id="searchVal">
+<input type="button" value="search" id="search">
+
+<script type="text/javascript">
+
+  var btn = document.getElementsByTagName("input"),
+  traverse=btn[0],
+  treeNodes=[],
+  treeRoot=document.getElementById("node1"),
+ searchVal=document.getElementById("searchVal"),
+  divs=document.getElementsByTagName("div"),
+  divsValue=[],
+  search=document.getElementById("search"),
+  timer=null;
+
+ for(var j=0;j<divs.length;j++){
+  var vv=divs[j].getAttribute("value");
+
+  divsValue.push(vv);
+ }
+
+
+    window.onload=function(){   
+    traverse.onclick=function(){
+      reset();
+      preOrder(treeRoot);
+      changeColor();
+    }
+
+    search.onclick=function(){
+      
+       
+      searchNode=searchVal.value;
+      var i=divsValue.indexOf(searchNode);
+        if(i>0){
+          divs[i].style.backgroundColor="blue";
+          setTimeout(function(){
+            divs[i].style.backgroundColor="white";
+          },5000);
+        }else{
+          alert("no such node");
+        }
+        
+      
+    }
+
+}
+
+
+
+
+    function preOrder(node){
+      if(!(node==null)){
+        treeNodes.push(node);
+       for(var i=0;i<node.children.length;i++){
+        preOrder(node.children[i]);
+       }
+      }
+    }
+    
+     function changeColor(){
+     var i=0;
+     treeNodes[i].style.backgroundColor="blue";
+     timer=setInterval(function(argument){
+        i++;
+        if(i<treeNodes.length){
+            treeNodes[i-1].style.backgroundColor="white";
+            treeNodes[i].style.backgroundColor="blue";
+        }else{
+            clearInterval(timer);
+            treeNodes[i].style.backgroundColor="white";
+
+        }
+
+     },500)
+
+  }
+   function reset(){
+    treeNodes=[];
+      clearInterval(timer);
+      //var divs= document.getElementsByTagName("div");
+      for(var i=0;i<divs.length;i++){
+        divs[i].style.backgroundColor="white";
+      }
+    }
+
+  
+  
+
+  
+</script>
+</body>
+</html>
